@@ -15,6 +15,10 @@
   ],
   "author": "Freakin' Geek",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/freakingeek/tailwind-safe-areas.git"
+  },
   "peerDependencies": {
     "tailwindcss": "^3.4.14"
   },
