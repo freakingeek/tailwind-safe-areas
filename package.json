@@ -11,5 +11,11 @@
     "env"
   ],
   "author": "Freakin' Geek",
-  "license": "ISC"
+  "license": "ISC",
+  "peerDependencies": {
+    "tailwindcss": "^3.4.14"
+  },
+  "devDependencies": {
+    "typescript": "^5.6.3"
+  }
 }
