@@ -1,6 +1,6 @@
 {
   "name": "tailwind-safe-areas",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "A Tailwind CSS plugin that adds safe-area padding, margin, and position utilities for iOS devices",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
