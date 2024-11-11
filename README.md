@@ -35,8 +35,8 @@ module.exports = {
 2. Use the custom safe-area classes in your HTML or JSX:
 
 ```HTML
-<div class="pt-safe-1 pb-safe-2 h-safe-1">
-  <!-- Content with safe-area padding and height adjustments -->
+<div class="pt-safe-1 pb-safe-2 m-safe-1 bottom-safe-4">
+  <!-- Content with safe-area padding and position adjustments -->
 </div>
 ```
 
