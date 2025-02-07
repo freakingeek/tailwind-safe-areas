@@ -4,19 +4,18 @@ const safeAreasPlugin = plugin(({ addUtilities, theme }) => {
   const spacing = theme("spacing");
 
   if (!spacing) {
-    console.warn("[Tailwind Safe Areas] You have to any configuration for spacing in your project");
-
+    console.warn("[Tailwind Safe Areas] You have to add a configuration for spacing in your project");
     return;
   }
 
   const safeMargins = Object.fromEntries(
     Object.entries(spacing).flatMap(([key, value]) => [
       [
-        `.mt-safe-${key}`,
+        `.mt-safe-\\[${key}\\]`,
         { marginTop: `calc(${value} + env(safe-area-inset-top))` },
       ],
       [
-        `.mb-safe-${key}`,
+        `.mb-safe-\\[${key}\\]`,
         { marginBottom: `calc(${value} + env(safe-area-inset-bottom))` },
       ],
     ])
@@ -25,11 +24,11 @@ const safeAreasPlugin = plugin(({ addUtilities, theme }) => {
   const safePaddings = Object.fromEntries(
     Object.entries(spacing).flatMap(([key, value]) => [
       [
-        `.pt-safe-${key}`,
+        `.pt-safe-\\[${key}\\]`,
         { paddingTop: `calc(${value} + env(safe-area-inset-top))` },
       ],
       [
-        `.pb-safe-${key}`,
+        `.pb-safe-\\[${key}\\]`,
         { paddingBottom: `calc(${value} + env(safe-area-inset-bottom))` },
       ],
     ])
@@ -38,11 +37,11 @@ const safeAreasPlugin = plugin(({ addUtilities, theme }) => {
   const safePositions = Object.fromEntries(
     Object.entries(spacing).flatMap(([key, value]) => [
       [
-        `.top-safe-${key}`,
+        `.top-safe-\\[${key}\\]`,
         { top: `calc(${value} + env(safe-area-inset-top))` },
       ],
       [
-        `.bottom-safe-${key}`,
+        `.bottom-safe-\\[${key}\\]`,
         { bottom: `calc(${value} + env(safe-area-inset-bottom))` },
       ],
     ])
