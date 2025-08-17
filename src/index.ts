@@ -1,6 +1,6 @@
 import plugin from "tailwindcss/plugin";
 
-const safeAreasPlugin = plugin(({ addUtilities, theme }) => {
+const safeAreaPlugin = plugin(({ addUtilities, theme }) => {
   const spacing = theme("spacing");
 
   if (!spacing) {
@@ -8,48 +8,21 @@ const safeAreasPlugin = plugin(({ addUtilities, theme }) => {
     return;
   }
 
-  const safeMargins = Object.fromEntries(
-    Object.entries(spacing).flatMap(([key, value]) => [
-      [
-        `.mt-safe-\\[${key}\\]`,
-        { marginTop: `calc(${value} + env(safe-area-inset-top))` },
-      ],
-      [
-        `.mb-safe-\\[${key}\\]`,
-        { marginBottom: `calc(${value} + env(safe-area-inset-bottom))` },
-      ],
-    ])
-  );
+  const entries = Object.entries(spacing).flatMap(([key, value]) => {
+    // NOTE: Escape the dot so 0.5 → 0\.5
+    const escaped = key.replace(/\./g, "\\.");
 
-  const safePaddings = Object.fromEntries(
-    Object.entries(spacing).flatMap(([key, value]) => [
-      [
-        `.pt-safe-\\[${key}\\]`,
-        { paddingTop: `calc(${value} + env(safe-area-inset-top))` },
-      ],
-      [
-        `.pb-safe-\\[${key}\\]`,
-        { paddingBottom: `calc(${value} + env(safe-area-inset-bottom))` },
-      ],
-    ])
-  );
+    return [
+      [`.mt-safe-${escaped}`, { marginTop: `calc(${value} + env(safe-area-inset-top))` }],
+      [`.mb-safe-${escaped}`, { marginBottom: `calc(${value} + env(safe-area-inset-bottom))` }],
+      [`.pt-safe-${escaped}`, { paddingTop: `calc(${value} + env(safe-area-inset-top))` }],
+      [`.pb-safe-${escaped}`, { paddingBottom: `calc(${value} + env(safe-area-inset-bottom))` }],
+      [`.top-safe-${escaped}`, { top: `calc(${value} + env(safe-area-inset-top))` }],
+      [`.bottom-safe-${escaped}`, { bottom: `calc(${value} + env(safe-area-inset-bottom))` }],
+    ];
+  });
 
-  const safePositions = Object.fromEntries(
-    Object.entries(spacing).flatMap(([key, value]) => [
-      [
-        `.top-safe-\\[${key}\\]`,
-        { top: `calc(${value} + env(safe-area-inset-top))` },
-      ],
-      [
-        `.bottom-safe-\\[${key}\\]`,
-        { bottom: `calc(${value} + env(safe-area-inset-bottom))` },
-      ],
-    ])
-  );
+  addUtilities(Object.fromEntries(entries));
+}) as any;
 
-  addUtilities(safeMargins);
-  addUtilities(safePaddings);
-  addUtilities(safePositions);
-});
-
-export default safeAreasPlugin;
+export default safeAreaPlugin;
